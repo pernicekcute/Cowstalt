@@ -1,12 +1,12 @@
 <p align="right">
-  <img align="right" height="140" src="https://github.com/pernicekcute/Cowstalt/blob/main/Cowstalt/icoimgs/icon-1024.png?raw=true" style="float: right;"/>
+  <img align="right" height="140" src="https://github.com/pernicekcute/Cowstalt/blob/main/Cowstalt/icoimgs/icon-1024.png?raw=true" style="float: right;"/>
 </p>
 
 <div style="width: calc(100% - 180px);">
-  <div style="font-size: 2em; font-weight: 600; line-height: 1.25; margin-bottom: 0;">Cowstalt</div>
+  <h1 style="margin-bottom: 50;">Cowstalt</h1>
 </div>
 
-> [!WARNING]  
+> [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
 
 **Version Support:**
