@@ -5,9 +5,11 @@ targets:
   Cowstalt:
     type: application
     platform: iOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "16.0"
     sources:
       - path: Cowstalt
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
-      INFOPLIST_FILE: Cowstalt/Info.plist # Optional, or let Xcode generate a default one
+      INFOPLIST_KEY_CFBundleDisplayName: "Cowstalt"
+      INFOPLIST_KEY_UIMainStoryboardFile: ""
+      INFOPLIST_KEY_UILaunchScreen: {}
