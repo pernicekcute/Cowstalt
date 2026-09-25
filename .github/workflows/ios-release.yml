@@ -1,4 +1,4 @@
-name: Build Cowstalt
+name: Build Cowstalt .ipa
 
 on:
   push:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: Build iOS Project
+    name: Build and Package iOS .ipa
     runs-on: macos-latest
 
     steps:
@@ -42,8 +42,15 @@ jobs:
                      -archivePath $PWD/build/Cowstalt.xcarchive \
                      archive
 
-      - name: Upload Build Artifact
+      - name: Package into .ipa
+        run: |
+          mkdir -p Payload
+          cp -r build/Cowstalt.xcarchive/Products/Applications/Cowstalt.app Payload/
+          zip -r Cowstalt.ipa Payload
+          rm -rf Payload
+
+      - name: Upload .ipa Artifact
         uses: actions/upload-artifact@v4
         with:
-            name: Cowstalt-Archive
-            path: build/Cowstalt.xcarchive
+            name: Cowstalt-ipa
+            path: Cowstalt.ipa
