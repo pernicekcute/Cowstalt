@@ -1,28 +1,45 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var message = "Welcome to Cowstalt!"
 
     var body: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "circle.grid.hex")
-                .font(.system(size: 50))
-                .foregroundColor(.accentColor)
-            
-            Text("Cowstalt")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            Text(message)
-                .font(.body)
-                .foregroundColor(.secondary)
-            
-            Button("Moo!") {
-                message = "The herd says hello!"
+        NavigationStack {
+            List {
+                Section {
+                    // Row 1: Title + Subtitle + Right Label
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Fake iOS Version")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            Text("iOS 26")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        Text("rkyroaddd3")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    // Row 2: Action Style Row
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("checkra1n Boot Screen")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            Text("To Exit click the boot logo.")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        Text("rkyroaddd3")
+                            .foregroundColor(.secondary)
+                    }
+                }
             }
-            .buttonStyle(.glass)
+            .listStyle(.insetGrouped)
+            .navigationTitle("Cowstalt Settings")
         }
-        .padding()
     }
 }
 
