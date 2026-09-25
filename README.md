@@ -3,7 +3,7 @@
 </p>
 
 <div style="width: calc(100% - 180px);">
-  <h1 style="margin-bottom: 0;">Cowstalt</h1>
+  <div style="font-size: 2em; font-weight: 600; line-height: 1.25; margin-bottom: 0;">Cowstalt</div>
 </div>
 
 > [!WARNING]  
