@@ -22,7 +22,7 @@
           "image-name" : "macbook.png",
           "name" : "macbook",
           "position" : {
-            "scale" : 0.45,
+            "scale" : 1,
             "translation-in-points" : [
               0,
               0
