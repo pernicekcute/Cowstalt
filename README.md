@@ -8,8 +8,8 @@
 
 <h2>Experimental iOS App. Made and Developed by rkyroaddd3</h2>
 
-> [!WARNING]  
-> Cowstalt is still in beta!<br>Use at your own risk.
+> [!INFO]
+> App updates are daily.
 
 **Version Support:**
 | iOS Version | Support |
