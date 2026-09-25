@@ -9,15 +9,14 @@ targets:
     sources:
       - path: Cowstalt
     resources:
-      - path: Cowstalt/Settings.bundle
-    info:
-      properties:
-        UILaunchScreen: {}
-        CFBundleDisplayName: "Cowstalt"
-        CFBundleName: "Cowstalt"
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
+      - Cowstalt/Settings.bundle
     settings:
       TARGETED_DEVICE_FAMILY: "1"
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
       ASSETCATALOG_COMPILER_APPICON_NAME: icon
+      # Inject Info.plist keys directly to prevent parsing errors:
+      INFOPLIST_KEY_UILaunchScreen: {}
+      INFOPLIST_KEY_CFBundleDisplayName: "Cowstalt"
+      INFOPLIST_KEY_CFBundleName: "Cowstalt"
+      INFOPLIST_KEY_CFBundleShortVersionString: "1.0"
+      INFOPLIST_KEY_CFBundleVersion: "1"
