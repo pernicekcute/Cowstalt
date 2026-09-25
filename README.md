@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1 style="margin-bottom: 0;">mond</h1>
+  <h1 style="margin-bottom: 0;">Cowstalt</h1>
 </div>
 
 > [!WARNING]  
