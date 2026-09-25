@@ -1,8 +1,8 @@
 {
   "fill" : {
     "linear-gradient" : [
-      "extended-srgb:1.00000,0.95000,0.20000,1.00000",
-      "extended-srgb:1.00000,0.75000,0.10000,1.00000"
+      "extended-srgb:0.20000,0.90000,0.60000,1.00000",
+      "extended-srgb:0.10000,0.60000,0.40000,1.00000"
     ],
     "orientation" : {
       "start" : {
@@ -19,10 +19,10 @@
     {
       "layers" : [
         {
-          "image-name" : "macbook.png",
-          "name" : "macbook",
+          "image-name" : "macwindow.png",
+          "name" : "macwindow",
           "position" : {
-            "scale" : 0.8,
+            "scale" : 1,
             "translation-in-points" : [
               0,
               0
