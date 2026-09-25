@@ -6,7 +6,7 @@
   <h1 style="margin-bottom: 0;">Cowstalt</h1>
 </div>
 
-<h2>Experimental iOS/iPadOS App. Made and Developed by rkyroaddd3</h2>
+<h2>Experimental iOS App. Made and Developed by rkyroaddd3</h2>
 
 > [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
