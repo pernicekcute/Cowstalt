@@ -6,6 +6,8 @@
   <h1 style="margin-bottom: 0;">Cowstalt</h1>
 </div>
 
+<span style="color: #8b949e;">Experimental iOS/iPadOS App.</span>
+
 > [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
 
@@ -14,12 +16,6 @@
 |---|---|
 | iOS ≤ 26.x | Unsupported |
 | iOS ≥ 27.x | Supported |
-
-**MobileGestalt Editing:**
-| iOS Version | Support | Reason |
-|---|---|---|
-| iOS ≤ 26.x | Supported | *No Reason.* |
-| iOS ≥ 27.x | Unsupported | Apple patching tweaks for MobileGestalt Editing and Modding. |
 
 **Info:**
 > Created by *rkyroaddd3* and *Doors Fan*
