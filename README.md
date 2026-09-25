@@ -1,9 +1,9 @@
-<p align="right">
+<p align="center">
   <img height="140" src="https://github.com/pernicekcute/Cowstalt/blob/main/Cowstalt/icoimgs/icon-1024.png?raw=true"/>
 </p>
 
 <div align="center">
-  <h1>Cowstalt</h1>
+  <h1 style="margin-bottom: 0;">mond</h1>
 </div>
 
 > [!WARNING]  
