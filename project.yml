@@ -1,0 +1,13 @@
+name: Cowstalt
+options:
+  bundleIdPrefix: com.cowstalt
+targets:
+  Cowstalt:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources:
+      - path: Cowstalt
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
+      INFOPLIST_FILE: Cowstalt/Info.plist # Optional, or let Xcode generate a default one
