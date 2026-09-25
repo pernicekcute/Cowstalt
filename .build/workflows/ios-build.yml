@@ -1,0 +1,34 @@
+name: Build iOS App (.ipa)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+  pull_request:
+    branches: [ "main", "master" ]
+    paths-ignore:
+      - '.github/**'
+      - 'README.md'
+
+jobs:
+  build-ipa:
+    name: Build and Archive iOS App
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+      - name: Build Archive
+        run: |
+          xcodebuild -project Cowstalt/Cowstalt.xcodeproj \
+                     -scheme Cowstalt \
+                     -sdk iphoneos \
+                     -configuration Release \
+                     -archivePath $PWD/build/Cowstalt.xcarchive \
+                     archive
