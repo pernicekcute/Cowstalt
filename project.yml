@@ -8,6 +8,8 @@ targets:
     deploymentTarget: "26.0"
     sources:
       - path: Cowstalt
+    resources:
+      - path: Cowstalt/Settings.bundle
     info:
       path: Cowstalt/Info.plist
     settings:
