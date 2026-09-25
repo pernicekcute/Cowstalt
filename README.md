@@ -1,4 +1,4 @@
-<p align="center">
+<p align="right">
   <img height="140" src="https://github.com/pernicekcute/Cowstalt/blob/main/Cowstalt/icoimgs/icon-1024.png?raw=true"/>
 </p>
 
