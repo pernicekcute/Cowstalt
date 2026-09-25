@@ -13,6 +13,6 @@ targets:
     info:
       path: Cowstalt/Info.plist
     settings:
-TARGETED_DEVICE_FAMILY: "1,2"  # "1,2" enables both iPhone and iPad native full-screen support
+      TARGETED_DEVICE_FAMILY: "1,2"  # "1,2" enables both iPhone and iPad native full-screen support
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
       ASSETCATALOG_COMPILER_APPICON_NAME: icon
