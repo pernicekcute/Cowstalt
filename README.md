@@ -23,5 +23,3 @@
 
 **Info:**
 > Created by *rkyroaddd3* and *Doors Fan*
-
-Cowstalt is a type of software for *Testing*, *Developing*
