@@ -1,4 +1,4 @@
-name: Build iOS App (.ipa)
+name: Build Cowstalt with Xcode project
 
 on:
   push:
@@ -13,8 +13,8 @@ on:
       - 'README.md'
 
 jobs:
-  build-ipa:
-    name: Build and Archive iOS App
+  build:
+    name: Generate and Build Xcode Project
     runs-on: macos-latest
 
     steps:
@@ -24,9 +24,15 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-      - name: Build Archive
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate .xcodeproj
+        run: xcodegen generate
+
+      - name: Build and Archive Project
         run: |
-          xcodebuild -project Cowstalt/Cowstalt.xcodeproj \
+          xcodebuild -project Cowstalt.xcodeproj \
                      -scheme Cowstalt \
                      -sdk iphoneos \
                      -configuration Release \
