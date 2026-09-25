@@ -5,3 +5,12 @@
 <div style="width: calc(100% - 180px);">
   <h1 style="margin-bottom: 0;">Cowstalt</h1>
 </div>
+
+> [!WARNING]  
+> Cowstalt is still in beta!<br>Use at your own risk.
+
+**Version Support:**
+| iOS Version | Support |
+|---|---|
+| iOS ≤ 26.x | unsupported |
+| iOS ≥ 27.x | supported |
