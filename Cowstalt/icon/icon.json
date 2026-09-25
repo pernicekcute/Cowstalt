@@ -19,7 +19,7 @@
     {
       "layers" : [
         {
-          "image-name" : macbook.png",
+          "image-name" : "macbook.png",
           "name" : "macbook",
           "position" : {
             "scale" : 0.45,
