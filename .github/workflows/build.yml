@@ -21,6 +21,29 @@ jobs:
       - name: Install XcodeGen
         run: brew install xcodegen
 
+      - name: Prepare App Icon Asset Catalog
+        run: |
+          mkdir -p Cowstalt/Assets.xcassets/AppIcon.appiconset
+          if [ -f Cowstalt/icon/Assets/macbook.png ]; then
+            cp Cowstalt/icon/Assets/macbook.png Cowstalt/Assets.xcassets/AppIcon.appiconset/macbook.png
+          fi
+          cat << 'EOF' > Cowstalt/Assets.xcassets/AppIcon.appiconset/Contents.json
+          {
+            "images" : [
+              {
+                "filename" : "macbook.png",
+                "idiom" : "universal",
+                "platform" : "ios",
+                "size" : "1024x1024"
+              }
+            ],
+            "info" : {
+              "author" : "xcode",
+              "version" : 1
+            }
+          }
+          EOF
+
       - name: Generate .xcodeproj
         run: xcodegen generate
 
