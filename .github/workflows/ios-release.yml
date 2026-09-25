@@ -1,4 +1,4 @@
-name: Build Cowstalt with Xcode project
+name: Build Cowstalt
 
 on:
   push:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    name: Generate and Build Xcode Project
+    name: Build iOS Project
     runs-on: macos-latest
 
     steps:
@@ -30,11 +30,20 @@ jobs:
       - name: Generate .xcodeproj
         run: xcodegen generate
 
-      - name: Build and Archive Project
+      - name: Build and Archive
         run: |
           xcodebuild -project Cowstalt.xcodeproj \
                      -scheme Cowstalt \
                      -sdk iphoneos \
                      -configuration Release \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGNING_ALLOWED=NO \
                      -archivePath $PWD/build/Cowstalt.xcarchive \
                      archive
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: Cowstalt-Archive
+            path: build/Cowstalt.xcarchive
