@@ -1,12 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    // Environment property to handle opening URLs natively in SwiftUI
+    @Environment(\.openURL) var openURL
 
     var body: some View {
         NavigationStack {
             List {
                 Section {
-                    // Each NavigationLink acts as a button that slides to a new view
+                    // Navigation link with slide-in animation
                     NavigationLink(destination: DetailView(title: "About")) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("About")
@@ -14,6 +16,29 @@ struct ContentView: View {
                                 .foregroundColor(.primary)
                             Text("About Cowstalt")
                                 .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                
+                Section {
+                    // Button to jump straight to the app's Settings bundle page
+                    Button(action: {
+                        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                            openURL(settingsURL)
+                        }
+                    }) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Open Cowstalt Settings")
+                                    .font(.body)
+                                    .foregroundColor(.accentColor)
+                                Text("Manage app preferences")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "gear")
                                 .foregroundColor(.secondary)
                         }
                     }
