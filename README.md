@@ -8,7 +8,7 @@
 
 <h2>Experimental iOS App. Made and Developed by rkyroaddd3</h2>
 
-> [!INFO]
+> [!NOTE]
 > App updates are daily.
 
 **Version Support:**
