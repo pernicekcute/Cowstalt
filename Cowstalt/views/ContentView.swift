@@ -6,40 +6,38 @@ struct ContentView: View {
         NavigationStack {
             List {
                 Section {
-                    // Row 1: Title + Subtitle + Right Label
-                    HStack {
+                    // Each NavigationLink acts as a button that slides to a new view
+                    NavigationLink(destination: DetailView(title: "About")) {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text("Fake iOS Version")
+                            Text("About")
                                 .font(.body)
                                 .foregroundColor(.primary)
-                            Text("iOS 26")
+                            Text("About Cowstalt")
                                 .font(.subheadline)
                                 .foregroundColor(.secondary)
                         }
-                        Spacer()
-                        Text("rkyroaddd3")
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Row 2: Action Style Row
-                    HStack {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text("checkra1n Boot Screen")
-                                .font(.body)
-                                .foregroundColor(.primary)
-                            Text("To Exit click the boot logo.")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                        Spacer()
-                        Text("rkyroaddd3")
-                            .foregroundColor(.secondary)
                     }
                 }
             }
             .listStyle(.insetGrouped)
-            .navigationTitle("Cowstalt Settings")
+            .navigationTitle("Cowstalt")
         }
+    }
+}
+
+// The destination view that it slides into
+struct DetailView: View {
+    let title: String
+    
+    var body: some View {
+        VStack {
+            Text("Welcome to \(title)")
+                .font(.title2)
+                .padding()
+            Spacer()
+        }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
