@@ -6,7 +6,7 @@
   <h1 style="margin-bottom: 0;">Cowstalt</h1>
 </div>
 
-<small>Experimental iOS/iPadOS App.</small>
+<h2>Experimental iOS/iPadOS App.</h2>
 
 > [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
