@@ -4,7 +4,6 @@
 
 <div style="width: calc(100% - 180px);">
   <h1>Cowstalt</h1>
-  <br>
 </div>
 
 > [!WARNING]  
