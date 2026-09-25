@@ -12,4 +12,4 @@ targets:
       path: Cowstalt/Info.plist
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
-      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      ASSETCATALOG_COMPILER_APPICON_NAME: icon
