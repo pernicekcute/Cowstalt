@@ -20,7 +20,7 @@ struct ContentView: View {
             Button("Moo!") {
                 message = "The herd says hello!"
             }
-            .buttonStyle(.glass,.tint(.orange))
+            .buttonStyle(.glass)
         }
         .padding()
     }
