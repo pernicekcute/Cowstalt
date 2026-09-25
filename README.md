@@ -6,7 +6,7 @@
   <h1>Cowstalt</h1>
 </div>
 
----
+<br>
 
 > [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
