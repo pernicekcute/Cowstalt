@@ -3,14 +3,8 @@ name: Build Cowstalt .ipa
 on:
   push:
     branches: [ "main", "master" ]
-    paths-ignore:
-      - '.github/**'
-      - 'README.md'
   pull_request:
     branches: [ "main", "master" ]
-    paths-ignore:
-      - '.github/**'
-      - 'README.md'
 
 jobs:
   build:
