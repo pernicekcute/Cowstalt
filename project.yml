@@ -9,7 +9,7 @@ targets:
     sources:
       - path: Cowstalt
     resources:
-      - Cowstalt/Settings.bundle
+      - path: Cowstalt/Settings.bundle
     info:
       path: Cowstalt/Info.plist
       properties:
@@ -21,7 +21,6 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         UILaunchScreen: {}
-        # Keep this clean and simple for pure SwiftUI:
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: true
     settings:
