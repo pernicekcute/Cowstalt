@@ -5,7 +5,7 @@ targets:
   Cowstalt:
     type: application
     platform: iOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "16.0"
     sources:
       - path: Cowstalt
     resources:
@@ -16,11 +16,13 @@ targets:
         CFBundleIdentifier: com.cowstalt.app
         CFBundleName: Cowstalt
         CFBundleDisplayName: Cowstalt
-        CFBundleExecutable: $(EXECUTABLE_NAME)
+        CFBundleExecutable: Cowstalt
         CFBundlePackageType: APPL
         CFBundleShortVersionString: 1.0
         CFBundleVersion: 1
         UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
     settings:
       TARGETED_DEVICE_FAMILY: "1"
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
