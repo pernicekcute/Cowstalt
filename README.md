@@ -12,5 +12,16 @@
 **Version Support:**
 | iOS Version | Support |
 |---|---|
-| iOS ≤ 26.x | unsupported |
-| iOS ≥ 27.x | supported |
+| iOS ≤ 26.x | Unsupported |
+| iOS ≥ 27.x | Supported |
+
+**MobileGestalt Editing:**
+| iOS Version | Support | Reason |
+|---|---|---|
+| iOS ≤ 26.x | Supported | *No Reason.* |
+| iOS ≥ 27.x | Unsupported | Apple patching tweaks for MobileGestalt Editing and Modding. |
+
+**Info:**
+> Created by *rkyroaddd3* and *Doors Fan*
+
+Cowstalt is a type of software for *Testing*, *Developing*
