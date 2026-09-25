@@ -8,8 +8,8 @@ targets:
     deploymentTarget: "26.0"
     sources:
       - path: Cowstalt
+    info:
+      path: Cowstalt/Info.plist
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
-      INFOPLIST_KEY_CFBundleDisplayName: "Cowstalt"
-      INFOPLIST_KEY_UIMainStoryboardFile: ""
-      INFOPLIST_KEY_UILaunchScreen: {}
+      ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
