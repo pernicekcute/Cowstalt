@@ -4,9 +4,8 @@
 
 <div style="width: calc(100% - 180px);">
   <h1>Cowstalt</h1>
+  <br>
 </div>
-
-<br>
 
 > [!WARNING]  
 > Cowstalt is still in beta!<br>Use at your own risk.
