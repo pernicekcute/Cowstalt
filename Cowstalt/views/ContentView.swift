@@ -4,10 +4,20 @@ import UserNotifications
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
     @Environment(\.openURL) var openURL
+    // Reads directly from UserDefaults where the Settings bundle stores values
+    @AppStorage("entered_key") private var enteredKey: String = ""
 
     var body: some View {
         NavigationStack {
             List {
+                if enteredKey == "Cowstalt-789jhA48" {
+                    Section {
+                        Text("Welcome, rkyroaddd3!")
+                            .font(.headline)
+                            .foregroundColor(.accentColor)
+                    }
+                }
+
                 Section {
                     // Navigation link with slide-in animation
                     NavigationLink(destination: DetailView(title: "About")) {
@@ -82,7 +92,7 @@ struct SysFuncs: View {
     @State private var showAlert = false
 
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
             Button("Dialog") {
                 // Triggers the dialog alert
                 showAlert = true
@@ -93,8 +103,7 @@ struct SysFuncs: View {
                 // Triggers the real system notification
                 requestPermissionAndSchedule()
             }
-            .buttonStyle(.glassProminent)
-            .tint(.blue)
+            .buttonStyle(.glass)
         }
         .padding()
         .navigationTitle("Cowstalt System Functions")
