@@ -19,6 +19,16 @@ struct ContentView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+                    NavigationLink(destination: SysFuncs()) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("System Functions")
+                                .font(.body)
+                                .foregroundColor(.primary)
+                            Text("System Functions for Cowstalt")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
                 
                 Section {
@@ -62,6 +72,26 @@ struct DetailView: View {
             Spacer()
         }
         .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct SysFuncs: View {    
+    var body: some View {
+        VStack {
+            Button("Dialog") {
+                // Action
+            }
+            .buttonStyle(.glass)
+            
+            Button("Notification") {
+                // Action
+            }
+            .buttonStyle(.glassProminent)
+            .tint(.blue)
+            Spacer()
+        }
+        .navigationTitle("Cowstalt System Functions")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
