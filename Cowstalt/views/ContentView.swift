@@ -89,8 +89,6 @@ struct SysFuncs: View {
             }
             .buttonStyle(.glass)
             
-            Spacer()
-            
             Button("Notification") {
                 // Triggers the real system notification
                 requestPermissionAndSchedule()
