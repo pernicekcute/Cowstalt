@@ -20,7 +20,7 @@
             <key>Key</key>
             <string>app_version</string>
             <key>DefaultValue</key>
-            <string>v1.0</string>
+            <string>v1.1</string>
         </dict>
         <dict>
             <key>Type</key>
@@ -31,6 +31,26 @@
             <string>app_developer</string>
             <key>DefaultValue</key>
             <string>rkyroaddd3</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSGroupSpecifier</string>
+            <key>Title</key>
+            <string>Authentication</string>
+        </dict>
+        <dict>
+            <key>Type</key>
+            <string>PSTextFieldSpecifier</string>
+            <key>Title</key>
+            <string>Enter Key</string>
+            <key>Key</key>
+            <string>entered_key</string>
+            <key>DefaultValue</key>
+            <string></string>
+            <key>IsSecure</key>
+            <false/>
+            <key>KeyboardType</key>
+            <string>Alphabet</string>
         </dict>
     </array>
 </dict>
