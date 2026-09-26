@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
@@ -76,23 +77,56 @@ struct DetailView: View {
     }
 }
 
-struct SysFuncs: View {    
+struct SysFuncs: View {
+    // State variable to trigger the dialog alert
+    @State private var showAlert = false
+
     var body: some View {
         VStack {
             Button("Dialog") {
-                // Action
+                // Triggers the dialog alert
+                showAlert = true
             }
             .buttonStyle(.glass)
             
+            Spacer()
+            
             Button("Notification") {
-                // Action
+                // Triggers the real system notification
+                requestPermissionAndSchedule()
             }
             .buttonStyle(.glassProminent)
             .tint(.blue)
-            Spacer()
         }
+        .padding()
         .navigationTitle("Cowstalt System Functions")
         .navigationBarTitleDisplayMode(.inline)
+        // Attaches the actual dialog box to the view
+        .alert("Cowstalt Alert", isPresented: $showAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("This is your system dialog in action.")
+        }
+    }
+    
+    // Function that handles permission and sends the real notification
+    func requestPermissionAndSchedule() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
+            if granted {
+                let content = UNMutableNotificationContent()
+                content.title = "Cowstalt System"
+                content.body = "This is a real notification from your app!"
+                content.sound = .default
+                
+                // Triggers 3 seconds after you tap the button and leave the app
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+                let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request)
+            }
+        }
     }
 }
 
