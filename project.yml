@@ -5,7 +5,7 @@ targets:
   Cowstalt:
     type: application
     platform: iOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "16.2"
     sources:
       - path: Cowstalt
     resources:
@@ -35,14 +35,14 @@ targets:
   CowstaltWidget:
     type: app-extension
     platform: iOS
-    deploymentTarget: "26.0"
+    deploymentTarget: "16.2"
     sources:
       - path: CowstaltWidget
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltWidget
-      INFOPLIST_FILE: CowstaltWidget/Info.plist
       PRODUCT_NAME: CowstaltWidget
     info:
+      path: CowstaltWidget/Info.plist
       properties:
         CFBundleDisplayName: CowstaltWidget
         CFBundleIdentifier: com.cowstalt.app.CowstaltWidget
