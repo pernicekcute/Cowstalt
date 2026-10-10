@@ -5,9 +5,11 @@ targets:
   Cowstalt:
     type: application
     platform: iOS
-    deploymentTarget: "16.2"
+    deploymentTarget: "26.0"
     sources:
       - path: Cowstalt
+        excludes:
+          - CowstaltActivities
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
@@ -35,14 +37,14 @@ targets:
   CowstaltActivities:
     type: app-extension
     platform: iOS
-    deploymentTarget: "16.2"
+    deploymentTarget: "26.0"
     sources:
-      - path: CowstaltActivities
+      - path: Cowstalt/CowstaltActivities
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltActivities
       PRODUCT_NAME: CowstaltActivities
     info:
-      path: CowstaltActivities/Info.plist
+      path: Cowstalt/CowstaltActivities/Info.plist
       properties:
         CFBundleDisplayName: CowstaltActivities
         CFBundleIdentifier: com.cowstalt.app.CowstaltActivities
