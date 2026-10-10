@@ -1,6 +1,6 @@
 name: Cowstalt
 options:
-  bundleIdPrefix: com.com.cowstalt
+  bundleIdPrefix: com.cowstalt
 targets:
   Cowstalt:
     type: application
@@ -9,9 +9,10 @@ targets:
     sources:
       - path: Cowstalt
         excludes:
-          - CowstaltActivities/TerminalActivity.swift # Exclude just the widget view from the main app
+          - CowstaltActivities
     resources:
       - path: Cowstalt/Settings.bundle
+        # Ensure no extension files or plists are listed here as resources
     dependencies:
       - target: CowstaltActivities
         embed: true
