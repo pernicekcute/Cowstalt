@@ -1,6 +1,6 @@
 name: Cowstalt
 options:
-  bundleIdPrefix: com.cowstalt
+  bundleIdPrefix: com.com.cowstalt
 targets:
   Cowstalt:
     type: application
@@ -9,7 +9,7 @@ targets:
     sources:
       - path: Cowstalt
         excludes:
-          - CowstaltActivities
+          - CowstaltActivities/TerminalActivity.swift # Exclude just the widget view from the main app
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
@@ -40,7 +40,6 @@ targets:
     deploymentTarget: "16.2"
     sources:
       - path: Cowstalt/CowstaltActivities
-      - path: Cowstalt/views/TerminalActivityAttributes.swift # <-- This shares the attributes file with the extension target
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltActivities
       PRODUCT_NAME: CowstaltActivities
