@@ -29,8 +29,8 @@ struct TerminalLiveActivity: Widget {
                     .foregroundColor(.gray)
 
                 Text("> \(context.state.terminalText)")
-    .font(.system(size: 12, design: .monospaced))
-    .foregroundColor(.white)
+                    .font(.system(size: 12, design: .monospaced))
+                    .foregroundColor(.white)
             }
             .padding()
             .background(Color.black)
