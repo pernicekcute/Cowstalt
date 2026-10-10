@@ -1,5 +1,6 @@
 import SwiftUI
 import UserNotifications
+import ActivityKit
 
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
@@ -68,6 +69,34 @@ struct ContentView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Cowstalt")
         }
+        .onAppear {
+            startTerminalLiveActivity()
+        }
+    }
+
+    // Automatically starts the Terminal Live Activity on launch
+    func startTerminalLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        // Prevent launching duplicate active sessions
+        if Activity<TerminalActivityAttributes>.activities.contains(where: { $0.activityState == .active }) {
+            return
+        }
+
+        let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
+        let initialState = TerminalActivityAttributes.ContentState(
+            terminalText: enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : "30%, charging, low power mode on"
+        )
+
+        do {
+            _ = try Activity.request(
+                attributes: attributes,
+                content: .init(state: initialState, staleDate: nil),
+                pushType: nil
+            )
+        } catch {
+            print("Failed to start Live Activity: \(error.localizedDescription)")
+        }
     }
 }
 
@@ -94,21 +123,18 @@ struct SysFuncs: View {
     var body: some View {
         VStack(spacing: 16) {
             Button("Dialog") {
-                // Triggers the dialog alert
                 showAlert = true
             }
-            .buttonStyle(.glass)
+            .buttonStyle(.borderedProminent)
             
             Button("Notification") {
-                // Triggers the real system notification
                 requestPermissionAndSchedule()
             }
-            .buttonStyle(.glass)
+            .buttonStyle(.borderedProminent)
         }
         .padding()
         .navigationTitle("Cowstalt System Functions")
         .navigationBarTitleDisplayMode(.inline)
-        // Attaches the actual dialog box to the view
         .alert("Cowstalt Alert", isPresented: $showAlert) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -116,7 +142,6 @@ struct SysFuncs: View {
         }
     }
     
-    // Function that handles permission and sends the real notification
     func requestPermissionAndSchedule() {
         let center = UNUserNotificationCenter.current()
         
@@ -127,7 +152,6 @@ struct SysFuncs: View {
                 content.body = "This is a real notification from your app!"
                 content.sound = .default
                 
-                // Triggers 3 seconds after you tap the button and leave the app
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
                 let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
                 
