@@ -9,9 +9,7 @@ targets:
     sources:
       - path: Cowstalt
         excludes:
-          - CowstaltWidget
-    resources:
-      - path: Cowstalt/Settings.bundle
+          - CowstaltActivities
     dependencies:
       - target: CowstaltWidget
         embed: true
@@ -38,7 +36,7 @@ targets:
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: CowstaltWidget
+      - path: Cowstalt/CowstaltActivities
     info:
       properties:
         CFBundleIdentifier: com.cowstalt.app.widget
