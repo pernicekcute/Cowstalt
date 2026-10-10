@@ -1,21 +1,11 @@
 import ActivityKit
 import SwiftUI
 import WidgetKit
-import Foundation
 
-public struct TerminalActivityAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        public var terminalText: String
-    }
-    public var sessionName: String
-}
-
-// 2. Define the Terminal Live Activity View & Widget Configuration
 struct TerminalLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TerminalActivityAttributes.self) { context in
             VStack(alignment: .leading, spacing: 6) {
-                // Window Buttons (Red, Yellow, Green)
                 HStack(spacing: 6) {
                     Circle().fill(Color.red).frame(width: 8, height: 8)
                     Circle().fill(Color.yellow).frame(width: 8, height: 8)
