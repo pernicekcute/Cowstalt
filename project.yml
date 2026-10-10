@@ -11,7 +11,7 @@ targets:
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
-      - target: CowstaltWidget
+      - target: CowstaltActivities
         embed: true
     info:
       path: Cowstalt/Info.plist
@@ -32,20 +32,20 @@ targets:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
       ASSETCATALOG_COMPILER_APPICON_NAME: icon
 
-  CowstaltWidget:
+  CowstaltActivities:
     type: app-extension
     platform: iOS
     deploymentTarget: "16.2"
     sources:
-      - path: CowstaltWidget
+      - path: CowstaltActivities
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltWidget
-      PRODUCT_NAME: CowstaltWidget
+      PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltActivities
+      PRODUCT_NAME: CowstaltActivities
     info:
-      path: CowstaltWidget/Info.plist
+      path: CowstaltActivities/Info.plist
       properties:
-        CFBundleDisplayName: CowstaltWidget
-        CFBundleIdentifier: com.cowstalt.app.CowstaltWidget
+        CFBundleDisplayName: CowstaltActivities
+        CFBundleIdentifier: com.cowstalt.app.CowstaltActivities
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         NSExtension:
