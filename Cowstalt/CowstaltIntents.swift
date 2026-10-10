@@ -13,6 +13,7 @@ struct StartCowstaltActivityIntent: AppIntent {
     var terminalText: String
 
     // This runs when you execute the shortcut block
+    @MainActor
     func perform() async throws -> some IntentResult {
         // Prevent launching duplicate active sessions
         if Activity<TerminalActivityAttributes>.activities.contains(where: { $0.activityState == .active }) {
