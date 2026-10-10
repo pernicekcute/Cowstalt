@@ -8,11 +8,6 @@ targets:
     deploymentTarget: "26.0"
     sources:
       - path: Cowstalt
-        excludes:
-          - CowstaltActivities
-    dependencies:
-      - target: CowstaltWidget
-        embed: true
     info:
       properties:
         CFBundleIdentifier: com.cowstalt.app
@@ -30,25 +25,3 @@ targets:
       TARGETED_DEVICE_FAMILY: "1"
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
       ASSETCATALOG_COMPILER_APPICON_NAME: icon
-
-  CowstaltWidget:
-    type: app-extension
-    platform: iOS
-    deploymentTarget: "26.0"
-    sources:
-      - path: Cowstalt/CowstaltActivities
-    info:
-      properties:
-        CFBundleIdentifier: com.cowstalt.app.widget
-        CFBundleName: CowstaltWidget
-        CFBundleDisplayName: CowstaltWidget
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
-        NSSupportsLiveActivities: true
-        NSExtension:
-          NSExtensionPointIdentifier: com.apple.widgetkit-extension
-    settings:
-      TARGETED_DEVICE_FAMILY: "1"
-      PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.widget
-      CODE_SIGN_IDENTITY: ""
-      CODE_SIGNING_REQUIRED: NO
