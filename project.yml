@@ -9,10 +9,9 @@ targets:
     sources:
       - path: Cowstalt
         excludes:
-          - CowstaltActivities
+          - CowstaltActivities/TerminalActivity.swift # Only exclude the widget view itself, not the whole folder
     resources:
       - path: Cowstalt/Settings.bundle
-        # Ensure no extension files or plists are listed here as resources
     dependencies:
       - target: CowstaltActivities
         embed: true
