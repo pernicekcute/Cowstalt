@@ -1,25 +1,13 @@
-name: Build Cowstalt .ipa & Deploy to Web
+name: Build Cowstalt .ipa
 
 on:
   push:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
-    name: Build, Package and Deploy iOS .ipa
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    name: Build and Package iOS .ipa
     runs-on: macos-latest
 
     steps:
@@ -70,79 +58,14 @@ jobs:
                      -archivePath $PWD/build/Cowstalt.xcarchive \
                      archive
 
-      - name: Package .ipa for Web Hosting
+      - name: Package .ipa File
         run: |
-          mkdir -p public/Payload
-          cp -r build/Cowstalt.xcarchive/Products/Applications/Cowstalt.app public/Payload/
-          cd public && zip -r Cowstalt.ipa Payload && rm -rf Payload
+          mkdir -p output/Payload
+          cp -r build/Cowstalt.xcarchive/Products/Applications/Cowstalt.app output/Payload/
+          cd output && zip -r Cowstalt.ipa Payload && rm -rf Payload
 
-      - name: Auto-Generate manifest.plist & index.html
-        run: |
-          # Write manifest.plist pointing to your GitHub Pages site
-          cat <<EOF > public/manifest.plist
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>items</key>
-            <array>
-              <dict>
-                <key>assets</key>
-                <array>
-                  <dict>
-                    <key>kind</key>
-                    <string>software-package</string>
-                    <key>url</key>
-                    <string>https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/Cowstalt.ipa</string>
-                  </dict>
-                </array>
-                <key>metadata</key>
-                <dict>
-                  <key>bundle-identifier</key>
-                  <string>com.yourcompany.Cowstalt</string>
-                  <key>bundle-version</key>
-                  <string>1.0.0</string>
-                  <key>kind</key>
-                  <string>software</string>
-                  <key>title</key>
-                  <string>Cowstalt</string>
-                </dict>
-              </dict>
-            </array>
-          </dict>
-          </plist>
-          EOF
-
-          # Write mobile-friendly landing page with installation link
-          cat <<EOF > public/index.html
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Install Cowstalt</title>
-            <style>
-              body { font-family: -apple-system, sans-serif; text-align: center; padding: 60px 20px; background: #f2f2f7; }
-              .card { background: white; padding: 30px; border-radius: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.1); max-width: 350px; }
-              .btn { display: inline-block; background: #007aff; color: white; padding: 14px 28px; border-radius: 12px; text-decoration: none; font-weight: bold; margin-top: 20px; }
-            </style>
-          </head>
-          <body>
-            <div class="card">
-              <h2>Install Cowstalt</h2>
-              <p>Tap below to install the latest build directly to your iOS device.</p>
-              <a class="btn" href="itms-services://?action=download-manifest&url=https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/manifest.plist">
-                Tap to Install
-              </a>
-            </div>
-          </body>
-          </html>
-          EOF
-
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload .ipa Artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: ./public
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          name: Cowstalt-ipa
+          path: output/Cowstalt.ipa
