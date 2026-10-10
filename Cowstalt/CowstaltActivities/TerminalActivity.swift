@@ -1,8 +1,8 @@
 import ActivityKit
 import SwiftUI
 import WidgetKit
+import Foundation
 
-// 1. Define the Attributes and State
 public struct TerminalActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         public var terminalText: String
