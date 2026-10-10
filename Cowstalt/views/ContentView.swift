@@ -2,6 +2,7 @@ import SwiftUI
 import UserNotifications
 import ActivityKit
 
+@available(iOS 16.2, *)
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
     @Environment(\.openURL) var openURL
@@ -162,5 +163,9 @@ struct SysFuncs: View {
 }
 
 #Preview {
-    ContentView()
+    if #available(iOS 16.2, *) {
+        ContentView()
+    } else {
+        Text("Requires iOS 16.2+")
+    }
 }
