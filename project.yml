@@ -10,7 +10,7 @@ targets:
       - path: Cowstalt
         excludes:
           - CowstaltActivities
-      - path: CowstaltActivities/TerminalActivityAttributes.swift
+      - path: Cowstalt/CowstaltActivities/TerminalActivityAttributes.swift
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
