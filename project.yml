@@ -10,7 +10,6 @@ targets:
       - path: Cowstalt
         excludes:
           - CowstaltActivities
-      - path: Cowstalt/CowstaltActivities/TerminalActivityAttributes.swift
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
@@ -41,6 +40,7 @@ targets:
     deploymentTarget: "16.2"
     sources:
       - path: Cowstalt/CowstaltActivities
+      - path: Cowstalt/TerminalActivityAttributes.swift # Extension pulls the attributes file from the main app
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltActivities
       PRODUCT_NAME: CowstaltActivities
