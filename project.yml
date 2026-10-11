@@ -9,7 +9,8 @@ targets:
     sources:
       - path: Cowstalt
         excludes:
-          - CowstaltActivities/TerminalActivity.swift # Only exclude the widget view itself, not the whole folder
+          - CowstaltActivities
+      - path: Cowstalt/CowstaltActivities/TerminalActivityAttributes.swift
     resources:
       - path: Cowstalt/Settings.bundle
     dependencies:
