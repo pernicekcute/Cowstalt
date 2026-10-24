@@ -8,7 +8,7 @@ struct StartCowstaltActivityIntent: LiveActivityIntent {
     // Description under the block
     static var description = IntentDescription("Launches the Cowstalt terminal Live Activity with a mandatory first line and optional extra lines.")
 
-    // Mandatory first line (cannot be removed)
+    // Mandatory first line (no '>' added here since the UI handles it)
     @Parameter(
         title: "Terminal Line 1",
         description: "The primary line that must always be included."
@@ -35,11 +35,8 @@ struct StartCowstaltActivityIntent: LiveActivityIntent {
             return .result()
         }
 
-        // Combine Line 1 with any additional lines
-        let rawLines = [terminalLine1] + additionalLines
-        
-        // Ensure every line starts with a "> " prefix (avoiding duplicates if already typed)
-        let formattedLines = rawLines.map { line in
+        // Ensure every additional line gets a "> " prefix
+        let formattedAdditionalLines = additionalLines.map { line in
             let trimmed = line.trimmingCharacters(in: .whitespaces)
             if trimmed.hasPrefix(">") {
                 return line
@@ -47,8 +44,10 @@ struct StartCowstaltActivityIntent: LiveActivityIntent {
                 return "> \(line)"
             }
         }
-        
-        let combinedText = formattedLines.joined(separator: "\n")
+
+        // Combine Line 1 (raw) with the formatted additional lines
+        let allLines = [terminalLine1] + formattedAdditionalLines
+        let combinedText = allLines.joined(separator: "\n")
 
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
         let initialState = TerminalActivityAttributes.ContentState(terminalText: combinedText)
