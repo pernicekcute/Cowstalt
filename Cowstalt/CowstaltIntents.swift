@@ -3,7 +3,7 @@ import ActivityKit
 
 struct StartCowstaltActivityIntent: LiveActivityIntent {
     // This is the name of the block that appears in the Shortcuts app
-    static var title: LocalizedStringResource = "Cowstalt Live Activity"
+    static var title: LocalizedStringResource = "Start Cowstalt Terminal"
     
     // Description under the block
     static var description = IntentDescription("Launches the Cowstalt terminal Live Activity with a mandatory first line and optional extra lines.")
@@ -36,8 +36,19 @@ struct StartCowstaltActivityIntent: LiveActivityIntent {
         }
 
         // Combine Line 1 with any additional lines
-        let allLines = [terminalLine1] + additionalLines
-        let combinedText = allLines.joined(separator: "\n")
+        let rawLines = [terminalLine1] + additionalLines
+        
+        // Ensure every line starts with a "> " prefix (avoiding duplicates if already typed)
+        let formattedLines = rawLines.map { line in
+            let trimmed = line.trimmingCharacters(in: .whitespaces)
+            if trimmed.hasPrefix(">") {
+                return line
+            } else {
+                return "> \(line)"
+            }
+        }
+        
+        let combinedText = formattedLines.joined(separator: "\n")
 
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
         let initialState = TerminalActivityAttributes.ContentState(terminalText: combinedText)
