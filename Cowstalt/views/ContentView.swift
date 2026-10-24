@@ -158,7 +158,7 @@ struct ContentView: View {
     
     // Updates any currently running Live Activity with new text
     func updateLiveActivityText(to newText: String) async {
-        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : newText
+        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 key approved" : newText
         let updatedState = TerminalActivityAttributes.ContentState(terminalText: textToDisplay)
         
         for activity in Activity<TerminalActivityAttributes>.activities {
