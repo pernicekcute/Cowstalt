@@ -142,7 +142,7 @@ struct ContentView: View {
         }
 
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
-        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : customTerminalText
+        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active!" : customTerminalText
         let initialState = TerminalActivityAttributes.ContentState(terminalText: textToDisplay)
 
         do {
