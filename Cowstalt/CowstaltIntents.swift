@@ -6,11 +6,14 @@ struct StartCowstaltActivityIntent: AppIntent {
     static var title: LocalizedStringResource = "Start Cowstalt Terminal"
     
     // Description under the block
-    static var description = IntentDescription("Launches the Cowstalt terminal Live Activity.")
+    static var description = IntentDescription("Launches the Cowstalt terminal LiveActivity with multiple lines.")
 
-    // Parameter field so you can type or pass custom text into the block
-    @Parameter(title: "Terminal Text", default: "")
-    var terminalText: String
+    // Parameter array so users can click '+' to add multiple terminal lines
+    @Parameter(
+        title: "Terminal Line",
+        description: "Add lines to display in the terminal Live Activity."
+    )
+    var terminalLines: [String]
 
     // This runs when you execute the shortcut block
     @MainActor
@@ -24,8 +27,11 @@ struct StartCowstaltActivityIntent: AppIntent {
             return .result()
         }
 
+        // Combine all entered lines into a single multi-line string
+        let combinedText = terminalLines.joined(separator: "\n")
+
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
-        let initialState = TerminalActivityAttributes.ContentState(terminalText: terminalText)
+        let initialState = TerminalActivityAttributes.ContentState(terminalText: combinedText)
 
         do {
             _ = try Activity.request(
