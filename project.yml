@@ -29,6 +29,10 @@ targets:
         UILaunchScreen: {}
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: true
+        CFBundleURLTypes:
+          - CFBundleURLName: com.cowstalt.app
+            CFBundleURLSchemes:
+              - cowstalt
     settings:
       TARGETED_DEVICE_FAMILY: "1"
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app
