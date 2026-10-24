@@ -2,15 +2,24 @@ import SwiftUI
 import UserNotifications
 import ActivityKit
 
-@available(iOS 16.2, *)
+// Define routes for programmatic navigation
+enum Route: Hashable {
+    case about
+    case sysFuncs
+}
+
+@available(iOS 26.0, *)
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
     @Environment(\.openURL) var openURL
     // Reads directly from UserDefaults where the Settings bundle stores values
     @AppStorage("entered_key") private var enteredKey: String = ""
+    
+    // Navigation path to manage deep linking pushes
+    @State private var navigationPath = NavigationPath()
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigationPath) {
             List {
                 if enteredKey == "Cowstalt-789jhA48" {
                     Section {
@@ -21,8 +30,8 @@ struct ContentView: View {
                 }
 
                 Section {
-                    // Navigation link with slide-in animation
-                    NavigationLink(destination: DetailView(title: "About")) {
+                    // Navigation links using value-based routing
+                    NavigationLink(value: Route.about) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("About")
                                 .font(.body)
@@ -32,7 +41,8 @@ struct ContentView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
-                    NavigationLink(destination: SysFuncs()) {
+                    
+                    NavigationLink(value: Route.sysFuncs) {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("System Functions")
                                 .font(.body)
@@ -43,7 +53,7 @@ struct ContentView: View {
                         }
                     }
 
-                    NavigationLink(destination: SysFuncs()) {
+                    NavigationLink(value: Route.sysFuncs) {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Changelog")
@@ -85,9 +95,30 @@ struct ContentView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Cowstalt")
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .about:
+                    DetailView(title: "About")
+                case .sysFuncs:
+                    SysFuncs()
+                }
+                case .changelog:
+                    Changelog()
+                }
+            }
         }
         .onAppear {
             startTerminalLiveActivity()
+        }
+        .onOpenURL { url in
+            // Parse incoming custom URL scheme (e.g., cowstalt://about or cowstalt://sysfuncs)
+            let hostOrPath = (url.host ?? url.path).lowercased()
+            
+            if hostOrPath.contains("about") {
+                navigationPath.append(Route.about)
+            } else if hostOrPath.contains("sysfuncs") {
+                navigationPath.append(Route.sysFuncs)
+            }
         }
     }
 
@@ -133,9 +164,24 @@ struct DetailView: View {
     }
 }
 
+struct Changelog: View {
+    
+    var body: some View {
+        VStack {
+            Text("Welcome to the Changelog")
+                .font(.title2)
+                .padding()
+            Spacer()
+        }
+        .navigationTitle("Changelog")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
 struct SysFuncs: View {
     // State variable to trigger the dialog alert
     @State private var showAlert = false
+    @AppStorage("entered_key") private var enteredKey: String = ""
 
     var body: some View {
         VStack(spacing: 16) {
@@ -148,6 +194,12 @@ struct SysFuncs: View {
                 requestPermissionAndSchedule()
             }
             .buttonStyle(.glass)
+            
+            // Manual trigger button for Live Activity
+            Button("Start Live Activity") {
+                startTerminalLiveActivity()
+            }
+            .buttonStyle(.glass)
         }
         .padding()
         .navigationTitle("Cowstalt System Functions")
@@ -156,6 +208,29 @@ struct SysFuncs: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text("This is your system dialog in action.")
+        }
+    }
+    
+    func startTerminalLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        if Activity<TerminalActivityAttributes>.activities.contains(where: { $0.activityState == .active }) {
+            return
+        }
+
+        let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
+        let initialState = TerminalActivityAttributes.ContentState(
+            terminalText: enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : "30%, charging, low power mode on"
+        )
+
+        do {
+            _ = try Activity.request(
+                attributes: attributes,
+                content: .init(state: initialState, staleDate: nil),
+                pushType: nil
+            )
+        } catch {
+            print("Failed to start Live Activity: \(error.localizedDescription)")
         }
     }
     
@@ -179,9 +254,9 @@ struct SysFuncs: View {
 }
 
 #Preview {
-    if #available(iOS 16.2, *) {
+    if #available(iOS 26.0, *) {
         ContentView()
     } else {
-        Text("Requires iOS 16.2+")
+        Text("Requires iOS 26.0+")
     }
 }
