@@ -13,8 +13,12 @@ enum Route: Hashable {
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
     @Environment(\.openURL) var openURL
+    
     // Reads directly from UserDefaults where the Settings bundle stores values
     @AppStorage("entered_key") private var enteredKey: String = ""
+    
+    // Replace "terminal_custom_text" with whatever key you defined in your Settings.bundle Root.plist
+    @AppStorage("terminal_custom_text") private var customTerminalText: String = "30%, charging, low power mode on"
     
     // Navigation path to manage deep linking pushes
     @State private var navigationPath = NavigationPath()
@@ -110,8 +114,13 @@ struct ContentView: View {
         .onAppear {
             startTerminalLiveActivity()
         }
+        .onChange(of: customTerminalText) { newValue in
+            // Automatically update the active Live Activity whenever the setting changes
+            Task {
+                await updateLiveActivityText(to: newValue)
+            }
+        }
         .onOpenURL { url in
-            // Parse incoming custom URL scheme (e.g., cowstalt://about, cowstalt://sysfuncs, or cowstalt://changelog)
             let hostOrPath = (url.host ?? url.path).lowercased()
             
             if hostOrPath.contains("about") {
@@ -128,15 +137,13 @@ struct ContentView: View {
     func startTerminalLiveActivity() {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         
-        // Prevent launching duplicate active sessions
         if Activity<TerminalActivityAttributes>.activities.contains(where: { $0.activityState == .active }) {
             return
         }
 
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
-        let initialState = TerminalActivityAttributes.ContentState(
-            terminalText: enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : "30%, charging, low power mode on"
-        )
+        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : customTerminalText
+        let initialState = TerminalActivityAttributes.ContentState(terminalText: textToDisplay)
 
         do {
             _ = try Activity.request(
@@ -148,9 +155,19 @@ struct ContentView: View {
             print("Failed to start Live Activity: \(error.localizedDescription)")
         }
     }
+    
+    // Updates any currently running Live Activity with new text
+    func updateLiveActivityText(to newText: String) async {
+        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : newText
+        let updatedState = TerminalActivityAttributes.ContentState(terminalText: textToDisplay)
+        
+        for activity in Activity<TerminalActivityAttributes>.activities {
+            await activity.update(using: updatedState)
+        }
+    }
 }
 
-// The destination view that it slides into
+// Supporting Views...
 struct DetailView: View {
     let title: String
     
@@ -180,9 +197,9 @@ struct Changelog: View {
 }
 
 struct SysFuncs: View {
-    // State variable to trigger the dialog alert
     @State private var showAlert = false
     @AppStorage("entered_key") private var enteredKey: String = ""
+    @AppStorage("terminal_custom_text") private var customTerminalText: String = "30%, charging, low power mode on"
 
     var body: some View {
         VStack(spacing: 16) {
@@ -196,7 +213,6 @@ struct SysFuncs: View {
             }
             .buttonStyle(.glass)
             
-            // Manual trigger button for Live Activity
             Button("Start Live Activity") {
                 startTerminalLiveActivity()
             }
@@ -220,9 +236,8 @@ struct SysFuncs: View {
         }
 
         let attributes = TerminalActivityAttributes(sessionName: "CowstaltSession")
-        let initialState = TerminalActivityAttributes.ContentState(
-            terminalText: enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : "30%, charging, low power mode on"
-        )
+        let textToDisplay = enteredKey == "Cowstalt-789jhA48" ? "rkyroaddd3 connected, session active" : customTerminalText
+        let initialState = TerminalActivityAttributes.ContentState(terminalText: textToDisplay)
 
         do {
             _ = try Activity.request(
