@@ -6,6 +6,7 @@ import ActivityKit
 enum Route: Hashable {
     case about
     case sysFuncs
+    case changelog
 }
 
 @available(iOS 26.0, *)
@@ -53,7 +54,7 @@ struct ContentView: View {
                         }
                     }
 
-                    NavigationLink(value: Route.sysFuncs) {
+                    NavigationLink(value: Route.changelog) {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Changelog")
@@ -101,7 +102,6 @@ struct ContentView: View {
                     DetailView(title: "About")
                 case .sysFuncs:
                     SysFuncs()
-                }
                 case .changelog:
                     Changelog()
                 }
@@ -111,13 +111,15 @@ struct ContentView: View {
             startTerminalLiveActivity()
         }
         .onOpenURL { url in
-            // Parse incoming custom URL scheme (e.g., cowstalt://about or cowstalt://sysfuncs)
+            // Parse incoming custom URL scheme (e.g., cowstalt://about, cowstalt://sysfuncs, or cowstalt://changelog)
             let hostOrPath = (url.host ?? url.path).lowercased()
             
             if hostOrPath.contains("about") {
                 navigationPath.append(Route.about)
             } else if hostOrPath.contains("sysfuncs") {
                 navigationPath.append(Route.sysFuncs)
+            } else if hostOrPath.contains("changelog") {
+                navigationPath.append(Route.changelog)
             }
         }
     }
@@ -165,7 +167,6 @@ struct DetailView: View {
 }
 
 struct Changelog: View {
-    
     var body: some View {
         VStack {
             Text("Welcome to the Changelog")
