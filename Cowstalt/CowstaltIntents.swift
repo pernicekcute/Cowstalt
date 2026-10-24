@@ -1,9 +1,9 @@
 import AppIntents
 import ActivityKit
 
-struct StartCowstaltActivityIntent: AppIntent {
+struct StartCowstaltActivityIntent: LiveActivityIntent {
     // This is the name of the block that appears in the Shortcuts app
-    static var title: LocalizedStringResource = "Start Cowstalt Terminal"
+    static var title: LocalizedStringResource = "Cowstalt Live Activity"
     
     // Description under the block
     static var description = IntentDescription("Launches the Cowstalt terminal Live Activity with a mandatory first line and optional extra lines.")
@@ -15,7 +15,7 @@ struct StartCowstaltActivityIntent: AppIntent {
     )
     var terminalLine1: String
 
-    // Optional list of extra lines (users can add or remove these)
+    // Optional list of extra lines (users can add or remove these via '+' and '-')
     @Parameter(
         title: "Additional Lines",
         description: "Add or remove extra lines below the first line.",
