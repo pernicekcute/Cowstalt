@@ -14,7 +14,7 @@ struct ContentView: View {
             List {
                 if enteredKey == "Cowstalt-789jhA48" {
                     Section {
-                        Text("Welcome, rkyroaddd3!")
+                        Text("Developer Mode Activated.")
                             .font(.headline)
                             .foregroundColor(.accentColor)
                     }
@@ -39,6 +39,22 @@ struct ContentView: View {
                                 .foregroundColor(.primary)
                             Text("System Functions for Cowstalt")
                                 .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+
+                    NavigationLink(destination: SysFuncs()) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Changelog")
+                                    .font(.body)
+                                    .foregroundColor(.accentColor)
+                                Text("Cowstalt's Changelog")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "archivebox")
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -126,12 +142,12 @@ struct SysFuncs: View {
             Button("Dialog") {
                 showAlert = true
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.glass)
             
             Button("Notification") {
                 requestPermissionAndSchedule()
             }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(.glass)
         }
         .padding()
         .navigationTitle("Cowstalt System Functions")
@@ -149,7 +165,7 @@ struct SysFuncs: View {
         center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, _ in
             if granted {
                 let content = UNMutableNotificationContent()
-                content.title = "Cowstalt System"
+                content.title = "Cowstalt"
                 content.body = "This is a real notification from your app!"
                 content.sound = .default
                 
