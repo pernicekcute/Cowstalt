@@ -2,6 +2,7 @@ import ActivityKit
 import SwiftUI
 import WidgetKit
 
+@main
 struct TerminalLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TerminalActivityAttributes.self) { context in
