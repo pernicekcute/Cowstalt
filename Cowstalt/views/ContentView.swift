@@ -73,6 +73,21 @@ struct ContentView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+                    NavigationLink(value: Route.tests) {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Tests")
+                                    .font(.body)
+                                    .foregroundColor(.accentColor)
+                                Text("Cowstalt's Test Page")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "gear")
+                                .foregroundColor(.secondary)
+                        }
+                    }
                 }
                 
                 Section {
@@ -108,6 +123,8 @@ struct ContentView: View {
                     SysFuncs()
                 case .changelog:
                     Changelog()
+                 case .tests:
+                    Tests()
                 }
             }
         }
@@ -192,6 +209,94 @@ struct Changelog: View {
             Spacer()
         }
         .navigationTitle("Changelog")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+struct Tests: View {
+    // State variable to track and control the progress value (0.0 to 1.0)
+    @State private var progress: Double = 0.4
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                Text("Welcome to the Tests")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                    .padding(.top)
+                
+                // MARK: - Circular Progress Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Circular Progress Views")
+                        .font(.headline)
+                    
+                    HStack(spacing: 40) {
+                        // Determinate Circular
+                        VStack(spacing: 8) {
+                            ProgressView(value: progress)
+                                .progressViewStyle(.circular)
+                            Text("Determinate: \(Int(progress * 100))%")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        // Indeterminate Circular (Spinner)
+                        VStack(spacing: 8) {
+                            ProgressView()
+                            Text("Indeterminate")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(12)
+                
+                // MARK: - Linear Progress Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Linear Progress Views")
+                        .font(.headline)
+                    
+                    // Determinate Linear
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Determinate")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        ProgressView(value: progress)
+                    }
+                    
+                    // Indeterminate Linear
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Indeterminate")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        ProgressView()
+                            .progressViewStyle(.linear)
+                    }
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(12)
+                
+                // MARK: - Slider Control Section
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Adjust Determinate Progress: \(Int(progress * 100))%")
+                        .font(.headline)
+                    
+                    Slider(value: $progress, in: 0...1, step: 0.01)
+                        .tint(.blue)
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(12)
+                
+                Spacer()
+            }
+            .padding()
+        }
+        .navigationTitle("Tests")
         .navigationBarTitleDisplayMode(.inline)
     }
 }
