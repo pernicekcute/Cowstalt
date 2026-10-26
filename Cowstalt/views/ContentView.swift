@@ -2,14 +2,23 @@ import SwiftUI
 import UserNotifications
 import ActivityKit
 
-// Define routes for programmatic navigation
+// MARK: - Activity Attributes Definition
+struct TerminalActivityAttributes: ActivityAttributes {
+    public struct ContentState: Codable, Hashable {
+        var terminalText: String
+    }
+    
+    var sessionName: String
+}
+
+// MARK: - Navigation Routes
 enum Route: Hashable {
     case about
     case sysFuncs
     case changelog
+    case tests
 }
 
-@available(iOS 26.0, *)
 struct ContentView: View {
     // Environment property to handle opening URLs natively in SwiftUI
     @Environment(\.openURL) var openURL
@@ -73,6 +82,7 @@ struct ContentView: View {
                                 .foregroundColor(.secondary)
                         }
                     }
+
                     NavigationLink(value: Route.tests) {
                         HStack {
                             VStack(alignment: .leading, spacing: 4) {
@@ -123,7 +133,7 @@ struct ContentView: View {
                     SysFuncs()
                 case .changelog:
                     Changelog()
-                 case .tests:
+                case .tests:
                     Tests()
                 }
             }
@@ -146,6 +156,8 @@ struct ContentView: View {
                 navigationPath.append(Route.sysFuncs)
             } else if hostOrPath.contains("changelog") {
                 navigationPath.append(Route.changelog)
+            } else if hostOrPath.contains("tests") {
+                navigationPath.append(Route.tests)
             }
         }
     }
@@ -184,7 +196,7 @@ struct ContentView: View {
     }
 }
 
-// Supporting Views...
+// MARK: - Supporting Views
 struct DetailView: View {
     let title: String
     
@@ -214,7 +226,7 @@ struct Changelog: View {
 }
 
 struct Tests: View {
-    // State variable to track and control the progress value (0.0 to 1.0)
+    // State variable to track and control the determinate progress value (0.0 to 1.0)
     @State private var progress: Double = 0.4
 
     var body: some View {
@@ -371,13 +383,5 @@ struct SysFuncs: View {
                 UNUserNotificationCenter.current().add(request)
             }
         }
-    }
-}
-
-#Preview {
-    if #available(iOS 26.0, *) {
-        ContentView()
-    } else {
-        Text("Requires iOS 26.0+")
     }
 }
