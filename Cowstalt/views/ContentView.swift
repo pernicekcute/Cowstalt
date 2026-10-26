@@ -2,15 +2,6 @@ import SwiftUI
 import UserNotifications
 import ActivityKit
 
-// MARK: - Activity Attributes Definition
-struct TerminalActivityAttributes: ActivityAttributes {
-    public struct ContentState: Codable, Hashable {
-        var terminalText: String
-    }
-    
-    var sessionName: String
-}
-
 // MARK: - Navigation Routes
 enum Route: Hashable {
     case about
@@ -141,7 +132,7 @@ struct ContentView: View {
         .onAppear {
             startTerminalLiveActivity()
         }
-        .onChange(of: customTerminalText) { newValue in
+        .onChange(of: customTerminalText) { _, newValue in
             // Automatically update the active Live Activity whenever the setting changes
             Task {
                 await updateLiveActivityText(to: newValue)
