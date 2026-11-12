@@ -8,7 +8,6 @@ struct StopActivityIntent: AppIntent {
     static var title: LocalizedStringResource = "Stop Terminal Activity"
 
     func perform() async throws -> some IntentResult {
-        // End all active instances of this specific Live Activity
         for activity in Activity<TerminalActivityAttributes>.activities {
             await activity.end(nil, dismissalPolicy: .immediate)
         }
