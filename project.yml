@@ -12,9 +12,6 @@ targets:
           - CowstaltActivities
     resources:
       - path: Cowstalt/Settings.bundle
-    dependencies:
-      - target: CowstaltActivities
-        embed: true
     info:
       path: Cowstalt/Info.plist
       properties:
@@ -42,9 +39,6 @@ targets:
     type: app-extension
     platform: iOS
     deploymentTarget: "16.2"
-    sources:
-      - path: Cowstalt/CowstaltActivities
-      - path: Cowstalt/TerminalActivityAttributes.swift # Extension pulls the attributes file from the main app
     settings:
       PRODUCT_BUNDLE_IDENTIFIER: com.cowstalt.app.CowstaltActivities
       PRODUCT_NAME: CowstaltActivities
